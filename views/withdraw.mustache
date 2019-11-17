@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:700,300" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="/css/main.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+      <link rel="alternate" href="ios-app://1376878040/{{{deeplink}}}">
+      <link rel="alternate" href="android-app://io.bluewallet.bluewallet/{{{deeplink}}}">
+      <meta property="al:ios:url" content="{{{deeplink}}}">
+      <meta name="twitter:app:url:iphone" content="{{{deeplink}}}">
+      <meta property="al:ios:app_store_id" content="1376878040">
+      <meta name="twitter:app:id:iphone" content="1376878040">
+      <meta property="al:ios:app_name" content="BlueWallet">
+      <meta name="twitter:app:name:iphone" content="BlueWallet">
+      <meta property="al:android:url" content="{{{deeplink}}}">
+      <meta name="twitter:app:url:googleplay" content="{{{deeplink}}}">
+      <meta property="al:android:package" content="io.bluewallet.bluewallet">
+      <meta name="twitter:app:id:googleplay" content="io.bluewallet.bluewallet">
+      <meta property="al:android:app_name" content="BlueWallet">
+      <meta name="twitter:app:name:googleplay" content="BlueWallet">
+      <meta name="twitter:card" content="summary">
+      <title>Claim your satoshis - sat2.io</title>
+      <meta property="og:title" content=" ">
+      <meta name="twitter:title" content=" ">
+      <meta name="twitter:app:country" content="US">
+      <!-- <deeplink rel="canonical" href="{{{deeplink}}}"> -->
+
+  </head>
+  <body>
+    <div class="header">
+        <img src="/images/sat2.svg">
+        <h1>Your friend sent you <span class="bitcoin">Bitcoin</span></h1>
+    </div>
+    <div class="pay-info text-center">
+        <p><span>{{Send.satoshis}} satoshis</span></p>
+    </div>
+
+  <div class="container text-center">
+
+      <div class="row mb-3" style="display: none;" id="ready2receive">
+          <div class="col-lg-4 col-sm-12 themed-grid-col">
+            <h4 class="mt-4">You are all set to receive!</h4>
+              <br />
+              <button type="button" class="sendsats rounded-pill btn btn-lg btn-primary" id="withdraw">Click here to claim</button>
+          </div>
+      </div>
+
+      <div class="spinner-border" role="status" id="spinner" style="display:none">
+          <span class="sr-only">Loading...</span>
+      </div>
+
+      <div class="row mb-3" style="display: none;" id="payment_error">
+          <div class="col-lg-4 col-sm-12 themed-grid-col">
+              <div class="alert alert-primary" role="alert">
+                  Payment error <span id="payment_error_message"></span>
+              </div>
+          </div>
+      </div>
+
+      <div class="row mb-3" style="display: none;" id="payment_success">
+          <div class="col-lg-4 col-sm-12 themed-grid-col">
+              <div class="alert alert-success" role="alert">
+                  Payment success!
+              </div>
+          </div>
+      </div>
+
+      <div class="row mb-3 apps text-center" style="display: none;" id="youneedawallet">
+          <div class="col-lg-4 col-sm-12 themed-grid-col">
+            <br />
+              <h4 class="text-center">To claim, get a Bitcoin Lightning wallet</h4>
+            <br />
+            <a href="javascript:installMobileApp();">
+              <div class="grid-container">
+                    <div class="appicon">
+                         <img src="/images/bluewallet.png">
+                    </div>
+                    <div class="apptext text-left">
+                        <h2>BlueWallet</h2>
+                        <p>iOS/Android</p>
+                    </div>
+                </div>
+              </a>
+               <a href="https://bitlum.io" target="_blank" class="d-none d-lg-block">
+                <div class="grid-container">
+                    <div class="appicon">
+                         <img src="/images/bitlum.png">
+                    </div>
+                    <div class="apptext text-left">
+                        <h2>Bitlum</h2>
+                        <p>Desktop</p>
+                    </div>
+                </div>
+              </a>
+              <p>Return to this page once you install the wallet!</p>
+          </div>
+      </div>
+
+
+      <div class="row mb-3 d-block d-sm-none" id="alreadyhavebwinstalled">
+          <div class="col-lg-4 col-sm-12 themed-grid-col">
+              <h4 class="mt-4">Already have BlueWallet installed..?</h4>
+              <br />
+              <a class="rounded-pill btn btn-lg btn-primary" href="{{deeplink}}" role="button">open BlueWallet</a>
+          </div>
+      </div>
+
+
+  </div> <!-- /container -->
+
+
+  <script
+          src="https://unpkg.com/webln@0.1.0/dist/webln.min.js"
+          integrity="sha384-KbiwDLn7g4wD+1fs5EA/1c6p4Zzy0u8RwWObPvI+ty1WpALihdyvjF7/yKJzJk/I"
+          crossorigin="anonymous"
+  ></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+
+  <script>
+      let mywebln;
+
+      $(function() {
+          console.log( "ready!" );
+
+          // probing for WEBLN every 1 sec
+          let interval = setInterval(async () => {
+              let noErr = true;
+
+              try {
+                  if (WebLN && WebLN.requestProvider) mywebln = await WebLN.requestProvider();
+              } catch(Err) {
+                  noErr = false;
+                  console.log(Err);
+              }
+              if (noErr) {
+              	// got webln! user can receive sats
+                clearInterval(interval);
+                $("#ready2receive").show();
+                $("#alreadyhavebwinstalled").remove();
+              } else {
+              	// no webln. asking user to install wallet
+              	$("#youneedawallet").show();
+              }
+          }, 1000);
+      });
+
+
+      let withdraw_invoice = false;
+
+      document.getElementById('withdraw').addEventListener('click', async () => {
+      	$("#ready2receive").hide();
+      	$("#spinner").show();
+      	if (!withdraw_invoice) {
+            let invoice = await mywebln.makeInvoice({
+                defaultAmount: {{Send.satoshis}},
+                minimumAmount: {{Send.satoshis}},
+                maximumAmount: {{Send.satoshis}},
+                defaultMemo: "Satoshis from sat2.io"
+            });
+            console.log(invoice);
+            withdraw_invoice = invoice.paymentRequest;
+        }
+          // posting invoice to backend
+
+          $.ajax({
+              method: "GET",
+              url: "/payinvoice/" + withdraw_invoice + "/{{Send.id}}",
+          })
+          .done(function( msg ) {
+              $("#spinner").hide();
+              console.log( "response: ",  msg );
+              if (msg && msg.payment_error) {
+                $("#payment_error_message").text(msg.payment_error);
+                $("#payment_error").show();
+                  $("#ready2receive").show();
+              } else if (msg.payment_route) {
+                  $("#payment_error").hide();
+                  $("#payment_success").show();
+              }
+          });
+      });
+
+
+
+      /**
+       * Determine the mobile operating system.
+       * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+       *
+       * @returns {String}
+       */
+      function getMobileOperatingSystem() {
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+          // Windows Phone must come first because its UA also contains "Android"
+          if (/windows phone/i.test(userAgent)) {
+              return "Windows Phone";
+          }
+
+          if (/android/i.test(userAgent)) {
+              return "Android";
+          }
+
+          // iOS detection from: http://stackoverflow.com/a/9039885/177710
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              return "iOS";
+          }
+
+          return "unknown";
+      }
+
+
+      function installMobileApp() {
+          var now = new Date().valueOf();
+          setTimeout(function () {
+              if (new Date().valueOf() - now > 100) return;
+              if (getMobileOperatingSystem() === 'iOS') {
+                  window.location = "https://itunes.apple.com/app/bluewallet-bitcoin-wallet/id1376878040";
+              } else if (getMobileOperatingSystem() === 'Android') {
+                  window.location = "https://play.google.com/store/apps/details?id=io.bluewallet.bluewallet";
+              } else {
+                  window.location = "https://bluewallet.io";
+              }
+          }, 25);
+          window.location = "{{{deeplink}}}";
+      }
+
+
+
+  </script>
+
+
+
+  </body>
+</html>

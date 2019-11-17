@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/webln@0.1.0/dist/webln.min.js"
+      integrity="sha384-KbiwDLn7g4wD+1fs5EA/1c6p4Zzy0u8RwWObPvI+ty1WpALihdyvjF7/yKJzJk/I"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <button id="connect">Connect to WebLN</button>
+    <script>
+      document.getElementById('connect').addEventListener('click', () => {
+        WebLN.requestProvider();
+      });
+    </script>
+  </body>
+</html>

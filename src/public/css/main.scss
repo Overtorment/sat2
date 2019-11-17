@@ -1,0 +1,274 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.navbar-nav img {
+  width: 30px;
+  height: 30px;
+  margin: -15px 15px -15px 15px;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.thumbnail {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: 0 0 5px #ccc, inset 0 0 0 #000;
+}
+
+.fa {
+  margin-right: 6px;
+}
+@media (max-width: 991px) {
+  .container {
+    max-width: 360px !important;
+  }
+}
+.header {
+  margin: 56px auto 40px auto;
+  text-align: center;
+}
+.header img {
+  margin: 0 0 40px 0;
+}
+.header h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 24px 0;
+}
+.header p {
+  margin: 0;
+  font-size: 15px;
+}
+.header .bitcoin {
+  color: #F5A623;
+}
+.header .phone {
+  color: #4A90E2;
+}
+.fields p {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.field1 {
+  border-radius: 24px 0 0 24px !important;
+  background: #F9F9F9 !important;
+  border: 1px solid #CFCFCF !important;
+  height: 46px !important;
+  font-size: 16px !important;
+  color: #000000 !important;
+  display: block !important;
+  padding: 0 24px !important;
+  margin: 0 auto 24px auto !important;
+  outline: 0 none !important; 
+}
+.input-group-text {
+  border-radius: 0 24px 24px 0 !important;
+  padding: 0 24px !important;
+  height: 46px !important;
+}
+.field {
+  border-radius: 24px !important;
+  background: #F9F9F9 !important;
+  border: 1px solid #CFCFCF !important;
+  height: 46px !important;
+  font-size: 16px !important;
+  color: #000000 !important;
+  display: block !important;
+  padding: 0 24px !important;
+  width: 100% !important;
+  margin: 0 auto 24px auto !important;
+  outline: 0 none !important;
+}
+.field:active, .field:focus, .field1:active, .field1:focus {
+  outline: 0 none !important;
+  border: 1px solid #4A90E2 !important;
+  box-shadow: 0 0px 0px 2px rgba(74,144,226,.9) !important;
+}
+.field::placeholder {
+  color: #999999;
+}
+.themed-grid-col {
+  margin: 0 auto;
+}
+.sendsats {
+  padding: 8px 48px !important;
+  font-size: 16px !important;
+  margin: 0 auto;
+}
+.pay-info {
+  font-size: 13px;
+  font-weight: 500;
+}
+.pay-info span, .success span {
+  background: #CCDDF9;
+  color: #2F5FB3;
+  border-radius: 20px;
+  padding: 3px 16px;
+}
+.send pre {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #f9f9f9;
+  color: #666;
+  display: block;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 0px solid transparent;
+  width: 90%;
+  margin: 0 auto;
+  padding: 8px 16px;
+}
+.qrcode img {
+  max-width: 100%;
+  margin: 0 auto;
+}
+.success {
+  color: #2F5FB3;
+  font-size: 13px;
+}
+.success p {
+  font-size: 13px;
+  margin: 24px 0;
+}
+.mt-4 {
+  font-size: 13px !important;
+}
+.apps a:hover {
+  text-decoration: none;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "appicon apptext";
+  padding: 16px 0;
+  margin: 0px;
+}
+.d-sm-none .btn {
+  padding: 8px 48px !important;
+  font-size: 16px !important;
+  margin: 0 auto;
+}
+.appicon {
+    grid-area: appicon;
+}
+.appicon img {
+    width: 40px;
+}
+.apptext {
+    grid-area: apptext;
+    padding: 0 0 0 8px;
+    position: relative;
+}
+.apptext h2 {
+    color: #2F5FB3;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+.apptext p {
+    color: #9AA0AA;
+    font-size: 13px;
+    margin: 0px;
+}
+@keyframes scaleAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 260px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  0% {
+    stroke-dashoffset: 36px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#successAnimationCircle {
+  stroke-dasharray: 260px 260px;
+  stroke: #2F5FB3;
+}
+
+#successAnimationCheck {
+  stroke-dasharray: 36px 36px;
+  stroke: #2F5FB3;
+}
+
+#successAnimationResult {
+  fill: #F0F5FF;
+  opacity: 0;
+}
+
+#successAnimation.animated {
+  animation: 1s ease-out 0s 1 both scaleAnimation;
+  
+  #successAnimationCircle {
+    animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle,
+               0.3s linear 0.9s 1 both;
+  }
+  
+  #successAnimationCheck {
+    animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck,
+               0.3s linear 0.9s 1 both;
+  }
+  
+  #successAnimationResult {
+    animation: 0.3s linear 0.9s both fadeIn;
+  }
+}
+footer {
+  margin-top: 40px;
+}
+footer p {
+  color: #666;
+}
+@import "themes/default/variables";
+
+@import "lib/bootstrap/bootstrap";
+
+@import "themes/default/default";

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <img src="../images/sat2.svg">
+            <h1>Send <span class="bitcoin">Bitcoin</span> to anyone<br/>by <span class="phone">phone number</span></h1>
+            <p>Easiest way to onboard your friends ✌</p>
+        </div>
+
+        {{> partials/flash}}
+    <div class="fields">
+        <!-- 
+        <p>What’s your name?</p>
+        <div class="row mb-3">
+            <div class="col-lg-4 col-sm-12 themed-grid-col">
+                <div class="input-group input-group-lg">
+                    <input type="text" id="name" class="field" placeholder="John Doe" aria-label="Large" aria-describedby="your name">
+                </div>
+            </div>
+            
+        </div>
+        -->
+
+        <p>Amount to send</p>
+        <div class="row mb-3">
+            <div class="col-lg-4 col-sm-12 themed-grid-col">
+                <div class="input-group input-group-lg">
+                    <input type="number" id="sat" class="field1 form-control" placeholder="1000" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">sats</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <p>Friend's phone number</p>
+        <div class="row mb-3">
+            <div class="col-lg-4 col-sm-12 themed-grid-col">
+                <div class="input-group input-group-lg">
+                    <input type="tel" id="tel" placeholder="+123456789" class="field" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4 themed-grid-col">
+                <div class="alert alert-danger" role="alert" id="badphonenumber" style="display: none;">
+                    Incorrect format
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 themed-grid-col text-center">
+                <button type="button" class="sendsats rounded-pill btn btn-lg btn-primary" id="send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    </div> <!-- /container -->
+
+
+    <footer>
+        <div class="container">
+            <p class="text-center">sat2.io uses the Lightning Network, an experimental new technology.<br />Using this service you are aware of its limitations and responsible for your usage.<br />© 2019 - sat2.io
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <script>
+        document.getElementById('send').addEventListener('click', () => {
+        	let tel = $("#tel").val().replace(/[^0-9]/g, '');
+        	let sat = $("#sat").val() || 1000;
+        	if (!tel || tel.toString().length < 10) {
+        		$("#badphonenumber").show();
+        		return;
+        	}
+            window.location = '/send/' + tel + '/' + sat;
+        });
+
+    </script>
+
+  </body>
+</html>
