@@ -43,7 +43,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.1",
-    "grpc": "^1.19.0",
+    "grpc": "^1.24.9",
     "lodash": "^4.17.21",
     "lusca": "^1.5.2",
     "mariadb": "^2.0.3",
